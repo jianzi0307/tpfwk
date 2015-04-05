@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>没有权限访问,请联系管理员!

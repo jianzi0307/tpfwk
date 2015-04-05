@@ -1,0 +1,108 @@
+<script type="text/javascript">
+db_prefix = '{$db_prefix}';
+
+function gogogo(moduleName, selectTableName, layoutName){
+	$.post("__CONTROLLER__/creatFiles", {'moduleName' : moduleName, 'selectTableName' : selectTableName, 'layoutName' : layoutName},
+		function(data){
+			$('#msg').html(data);
+		}
+	);
+}
+
+jQuery(document).ready(function($) {
+		$('#gogogo').bind("click", function(){
+			moduleName = $('#moduleName').val();
+			checkedBox = $('input:checked');
+			selectTableName = [];
+			if(db_prefix != ''){
+				checkedBox.each(function(){
+				selectTableName.push($(this).val().replace(db_prefix,''));
+				});
+			}else{
+			checkedBox.each(function(){
+				selectTableName.push($(this).val());
+				});
+			}
+			layoutName = $('#layoutName').val();
+			gogogo(moduleName, selectTableName, layoutName);
+		});	
+	});
+
+</script>
+<div class="mainbar">
+	<!-- Page heading -->
+	<div class="page-head">
+	  <h2 class="pull-left"><i class="icon-home"></i>生成高级表单代码</h2>
+
+	<div class="clearfix"></div>
+	</div>
+	<!-- Page heading ends -->
+
+
+	<!-- Matter -->
+
+	<div class="matter">
+		<div class="container">
+			<div class="row">
+			<div class="col-md-6">
+				<div class="widget">
+					<div class="widget-head">
+					  <div class="pull-left" height="80">
+						第一步 选择对应的数据表
+					  </div>
+					  <div class="widget-icons pull-right">
+						<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+						<a href="#" class="wclose"><i class="icon-remove"></i></a>
+					  </div>  
+					  <div class="clearfix"></div>
+					</div>  
+					<div class="widget-content" >
+					<div class="padd">
+					<p>注：此步骤依赖于模型代码生成，只有先生成对应的模型代码才能使用</p>
+                      <div class="form quick-post">
+                                      <!-- Edit profile form (not working)-->
+                                      <div class="form-horizontal">  
+										<div class="form-group">
+											<div class="form-group">
+												<label class="control-label col-lg-3"  style="width:120px">目标模块:</label>
+												<div class="col-lg-9">                               
+													<select class="form-control" id="moduleName">
+													  <volist name="moduleNameList" id="moduleName" >
+															<option value="{$moduleName}">{$moduleName}</option>
+														</volist>
+													</select> 
+												</div>
+											  </div>   
+											  <!-- Table -->
+											<div class="form-group">
+												<label class="control-label col-lg-4" style="width:120px">自定义模型:</label>
+												<div class="col-lg-9"> 
+													<select class="form-control" id="tableName">
+														<volist name="tableNameList" id="table" >
+															<option value="{$table}" >{$table}</option>
+														</volist> 
+													</select> 
+												</div>
+											</div> 
+									    </div>    
+                                          
+                                          <!-- Buttons -->
+                                          <div class="form-group">
+                                             <!-- Buttons -->
+											 <div class="col-lg-offset-2 col-lg-9">
+												<button class="btn btn-success" id="gogogo">读取</button>
+											 </div>
+                                          </div>
+                                      </div>
+                                    </div><!--end  paddad-->
+			
+					</div>
+				</div>	
+				</div>	
+			</div>
+		</div>
+		  
+		 <div id="msg"></div> 
+		</div><!-- container Graph end -->
+	</div>
+</div>
