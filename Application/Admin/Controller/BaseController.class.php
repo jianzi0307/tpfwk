@@ -19,13 +19,13 @@ class BaseController extends Controller {
      */
     public function _initialize() {
 
-        vendor('Raven.Autoloader');
-        \Raven_Autoloader::register();
-        $client = new \Raven_Client('http://db71069e53ca465c9817d56f6cb2d0ad:f938c54726914c358596f857d8399acf@sentry.example.com/2');
-        $error_handler = new \Raven_ErrorHandler($client);
-        // Register error handler callbacks
-        set_error_handler(array($error_handler, 'handleError'));
-        set_exception_handler(array($error_handler, 'handleException'));
+//        vendor('Raven.Autoloader');
+//        \Raven_Autoloader::register();
+//        $client = new \Raven_Client('http://db71069e53ca465c9817d56f6cb2d0ad:f938c54726914c358596f857d8399acf@sentry.example.com/2');
+//        $error_handler = new \Raven_ErrorHandler($client);
+//        // Register error handler callbacks
+//        set_error_handler(array($error_handler, 'handleError'));
+//        set_exception_handler(array($error_handler, 'handleException'));
 
 		//检查用户是否登录
 		$user = D('Useradmin');

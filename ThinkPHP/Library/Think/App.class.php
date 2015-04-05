@@ -79,7 +79,6 @@ class App {
             //创建控制器实例
             $module  =  controller(CONTROLLER_NAME,CONTROLLER_PATH);                
         }
-
         if(!$module) {
             if('4e5e5d7364f443e28fbf0d3ae744a59a' == CONTROLLER_NAME) {
                 header("Content-type:image/png");
