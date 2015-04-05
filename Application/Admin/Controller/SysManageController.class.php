@@ -8,12 +8,12 @@
 namespace Admin\Controller;
 
 /**
- * Class SysManageController
+ * Class SysmanageController
  *
  * 系统管理
  * @package Admin\Controller
  */
-class SysManageController extends BaseController {
+class SysmanageController extends BaseController {
 
     /**
      * 系统用户组管理

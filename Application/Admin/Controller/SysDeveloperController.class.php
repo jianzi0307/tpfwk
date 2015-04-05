@@ -11,12 +11,12 @@ use Admin\Model\FileModel;
 use Admin\Model\DbModel;
 
 /**
- * Class SysDeveloperController
+ * Class SysdeveloperController
  *
  * 开发者面板
  * @package Admin\Controller
  */
-class SysDeveloperController extends BaseController {
+class SysdeveloperController extends BaseController {
 
     const __OK      = 0;
     const __error_1 = 10001;
