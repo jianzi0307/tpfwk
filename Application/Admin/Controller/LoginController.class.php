@@ -36,9 +36,12 @@ class LoginController extends Controller {
 	 * 登录验证
 	 */
 	public function loginAuth() {
-		$uname = I('post.username');
+		$uname = trim(I('post.username'));
 		$upasswd = I('post.password');
 		if($uname && $upasswd) {
+            $uname = Util::getSafeText($uname);
+            $upasswd = Util::getSafeText($upasswd);
+
 			$user = D('Useradmin');
 			$authRes = $user->userLogin($uname,$upasswd);
 			if( $authRes > 0 ) {

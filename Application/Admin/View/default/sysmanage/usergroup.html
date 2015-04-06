@@ -6,7 +6,7 @@
             <!-- BEGIN PAGE TITLE & BREADCRUMB-->
             <ul class="breadcrumb">
                 <li>
-                    <i class="icon-cogs"></i>
+                    <i class="icon-group"></i>
                     <i class="icon-angle-right"></i>
                 </li>
                 <li><a href="#">系统用户组</a></li>
@@ -17,50 +17,115 @@
     <!-- END PAGE HEADER-->
 </block>
 <block name="page_container_dashboard">
-    <div class="span11">
-        <!--BEGIN TABS-->
-        <div class="tabbable tabbable-custom">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab_1_1" data-toggle="tab">组列表</a></li>
-                <li><a href="#tab_1_2" data-toggle="tab">添加组</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab_1_1">
 
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                <div class="portlet-body">
-                <table class="table table-striped table-bordered table-hover" id="sample_1">
-                <thead>
-                <tr>
-                    <th style="width:8px;">
-                        <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                    </th>
-                    <th>序号</th>
-                    <th class="hidden-480">组名</th>
-                    <th class="hidden-480">组描述</th>
-                    <th class="hidden-480">状态</th>
-                    <th >操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="odd gradeX">
-                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                    <td>shuxer</td>
-                    <td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-                    <td class="hidden-480">120</td>
-                    <td class="center hidden-480">12 Jan 2012</td>
-                    <td ><span class="label label-success">Approved</span></td>
-                </tr>
-                </tbody>
-                </table>
-                </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
-                </div>
-                <div class="tab-pane" id="tab_1_2">
-                    222
-                </div>
+    <div class="portlet box light-grey">
+        <div class="portlet-title">
+            <div class="caption"><i class="icon-group"></i>系统用户组</div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
             </div>
         </div>
-        <!--END TABS-->
+        <div class="portlet-body">
+            <!--BEGIN TABS-->
+            <div class="tabbable tabbable-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1_1" data-toggle="tab">用户列表</a></li>
+                    <li><a href="#tab_1_2" data-toggle="tab">添加组</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1_1">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-hover" id="user_groups_table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:8px;" class="hidden">
+                                            <input type="checkbox" class="hidden group-checkable" data-set="#user_groups_table .checkboxes" />
+                                        </th>
+                                        <th>序号</th>
+                                        <th class="hidden-480">组名</th>
+                                        <th class="hidden-480">组描述</th>
+                                        <th class="hidden-480">状态</th>
+                                        <th >操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name="groupList" item="group">
+                                    <tr class="odd gradeX">
+                                        <td class="hidden"><input type="checkbox" class="checkboxes" value="1" /></td>
+                                        <td style="width:50px">{$group.id}</td>
+                                        <td style="width:80px" class="hidden-480">{$group.title}</td>
+                                        <td class="hidden-480">{$group.description}</td>
+                                        <td style="width:50px" class="center hidden-480">
+                                            <if condition="$group.status gt 0">
+                                                <span class="label label-success">启用</span>
+                                                <else/>
+                                                <span class="label label-inverse">禁用</span>
+                                            </if>
+                                        </td>
+                                        <td style="width:300px">
+                                            <button type="button" class="btn green">权限管理</button>
+                                            <button type="button" class="btn green">成员管理</button>
+                                            <button type="button" class="btn green">修改</button>
+                                            <!--<button type="button" class="btn red">删除</button>-->
+                                            <a href="#modalConfirm" role="button" class="btn red" data-toggle="modal">删除</a>
+                                        </td>
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                    <div class="tab-pane" id="tab_1_2">
+                        <div class="portlet-body form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="groupName">组名称:</label>
+                                <div class="controls">
+                                    <input id="groupName" type="text" placeholder="组名称..." value=""/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="groupDesc">组描述：</label>
+                                <div class="controls">
+                                    <input id="groupDesc" type="text" placeholder="组描述..."　value="">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="groupActive">是否启用:</label>
+                                <div class="controls">
+                                    <div class="success-toggle-button">
+                                        <input id="groupActive" type="checkbox" class="toggle" checked="checked" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button id="btn_add_user_group" class="btn green">添加</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--确认弹窗-->
+                    <div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h3 id="modalConfirmLabel">提示</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>是否确认要删除该项?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                            <button data-dismiss="modal" class="btn blue">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END TABS-->
+        </div>
     </div>
 </block>
