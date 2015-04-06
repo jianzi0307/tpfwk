@@ -75,9 +75,21 @@ var TableManaged = function () {
                 }
             });
 
-            //删除组
-            $('#').click(function(){
+            //Modal层显示触发
+            $('#modal-from-dom').on('show', function() {
+                var id = $(this).data('id'), confirmBtn = $(this).find('.blue');
+               // alert(id);
+            });
 
+            $('.btn_confirm_delete').bind('click', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                alert(id);
+                $('#modal-from-dom').data('id', id).modal('show');
+            });
+
+            $('body').on('hidden', '.modal', function () {
+                $(this).removeData('modal');
             });
 
             jQuery('#user_groups_table_wrapper .dataTables_filter input').addClass("m-wrap medium"); // modify table search input

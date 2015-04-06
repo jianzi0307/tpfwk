@@ -68,7 +68,7 @@
                                             <button type="button" class="btn green">成员管理</button>
                                             <button type="button" class="btn green">修改</button>
                                             <!--<button type="button" class="btn red">删除</button>-->
-                                            <a href="#modalConfirm" role="button" class="btn red" data-toggle="modal">删除</a>
+                                            <a href="#" data-id="{$group.id}" role="button" class="btn red btn_confirm_delete" data-toggle="modal">删除</a>
                                         </td>
                                     </tr>
                                 </foreach>
@@ -110,10 +110,10 @@
                     </div>
 
                     <!--确认弹窗-->
-                    <div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+                    <div id="modal-from-dom" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-title-label" aria-hidden="true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h3 id="modalConfirmLabel">提示</h3>
+                            <h3 id="modal-title-label">提示</h3>
                         </div>
                         <div class="modal-body">
                             <p>是否确认要删除该项?</p>
