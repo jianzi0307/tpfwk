@@ -110,8 +110,11 @@ class UseradminModel extends BaseModel {
             ;
         } else {
             //TODO:读写分离
-            $uid = $this->field('id')->where("uname='".$uname."'")->find();//$this->field('id')->where('uname='.$uname)->find();
-            if( !empty($uid) ) {
+            $uid = $this
+                ->field('id')
+                ->where("uname='".$uname."'")
+                ->find();
+            if( !empty($uid) && $uid > 0 ) {
 	            $this->_mc->set($cacheId, $uid['id'], $_expire=0, $_compress=0);
 	        }
         }

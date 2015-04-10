@@ -81,4 +81,5 @@ class BaseController extends Controller {
         $this->assign('__G_BASECLASS__',$isBase ? $type : 'Base'.$type);
         file_put_contents(APP_PATH.'/'.$module.'/'.$type.'/'.$clsName.$type.'.class.php',"<?php".PHP_EOL.$this->fetch(MODULE_PATH.'/Templates/'.$tpl.'.tpl'));
 	}
+
 }

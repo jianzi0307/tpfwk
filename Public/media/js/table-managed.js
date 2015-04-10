@@ -1,5 +1,4 @@
 var TableManaged = function () {
-
     //添加组提交验证
     var addUserGroupValid = function() {
         return true;
@@ -9,7 +8,7 @@ var TableManaged = function () {
 
         //main function to initiate the module
         init: function () {
-            
+
             if (!jQuery().dataTable) {
                 return;
             }
@@ -40,9 +39,9 @@ var TableManaged = function () {
                     }
                 },
                 "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
+                    'bSortable': false,
+                    'aTargets': [0]
+                }
                 ]
             });
 
@@ -78,7 +77,7 @@ var TableManaged = function () {
             //Modal层显示触发
             $('#modal-from-dom').on('show', function() {
                 var id = $(this).data('id'), confirmBtn = $(this).find('.blue');
-               // alert(id);
+                // alert(id);
             });
 
             $('.btn_confirm_delete').bind('click', function(e) {

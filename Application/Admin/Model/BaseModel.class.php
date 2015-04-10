@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
-use Lib;
+use Lib\ExtMemcache;
 
 /**
  * Class BaseModel
@@ -49,7 +49,7 @@ class BaseModel extends Model {
 			return $this->mcPool[$mcString];
 		}
 		$serversConf = C('MEMCACHE_SERVERS');
-		return $this->mcPool[$mcString] = new Lib\ExtMemcache($serversConf[$mcString]);
+		return $this->mcPool[$mcString] = new ExtMemcache($serversConf[$mcString]);
 	}
 
 	/**

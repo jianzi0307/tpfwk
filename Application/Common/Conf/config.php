@@ -4,7 +4,10 @@
 // +----------------------------------------------------------------------
 // 
 return array(
+    //主域名
+    'SITE_DOMAIN'   => 'hyh.cc',
 
+    //URL不区分大小写
     'URL_CASE_INSENSITIVE' => true,
 
 	//密码干扰码，跟用户密码一起md5后存入库
@@ -43,7 +46,7 @@ return array(
 			'Lib' => APP_PATH.'Common/Lib'
 		),
 
-	//Memcache 集群
+	//Memcache集群配置
 	'MEMCACHE_SERVERS' => array(
 			//mcMain服务器组
 			'mcMain' => array(
@@ -59,4 +62,9 @@ return array(
 			//	),
 		),
 
+    //Redis配置
+    'REDIS_SERVERS' => array(),
+
+    //MongoDB配置
+    'MONGO_SERVERS' => array()
 );
